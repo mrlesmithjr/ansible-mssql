@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "mrlesmithjr/xenial64"
+  config.vm.define "db01"
+  config.vm.hostname = "db01"
+  config.vm.network "forwarded_port", guest: 1433, host: 1433, host_ip: "127.0.0.1"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.cpus = "1"
+    vb.memory = "2048"
+  end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbook.yml"
+    ansible.groups = {
+      "mssql_server" => ["db01"]
+    }
+  end
+
+end

@@ -1,0 +1,4 @@
+---
+- hosts: mssql_server
+  roles:
+    - role: ansible-mssql
