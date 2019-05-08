@@ -1,0 +1,23 @@
+---
+- name: config | Checking if MSSQL has already been configured
+  stat:
+    path: /opt/mssql/.configured
+  register: mssql_configured_check
+  become: true
+
+- name: config | Configuring MSSQL
+  command: /opt/mssql/bin/mssql-conf --noprompt setup
+  environment:
+    ACCEPT_EULA: "y"
+    MSSQL_PID: "{{ mssql_pid }}"
+    MSSQL_SA_PASSWORD: "{{ mssql_sa_password }}"
+  become: true
+  register: mssql_configured
+  when: not mssql_configured_check['stat']['exists']
+
+- name: config | Marking MSSQL as configured
+  file:
+    path: /opt/mssql/.configured
+    state: touch
+  become: true
+  when: mssql_configured['changed']

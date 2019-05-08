@@ -1,0 +1,4 @@
+---
+# defaults file for ansible-mssql
+mssql_pid: Developer
+mssql_sa_password: Password123

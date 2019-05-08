@@ -1,0 +1,6 @@
+---
+- name: service | Ensuring mssql-server is running
+  service:
+    name: mssql-server
+    state: started
+  become: true
