@@ -21,3 +21,9 @@
     state: touch
   become: true
   when: mssql_configured['changed']
+
+- name: config | Configuring environment pathing
+  template:
+    src: etc/profile.d/mssql.sh.j2
+    dest: /etc/profile.d/mssql.sh
+  become: true
