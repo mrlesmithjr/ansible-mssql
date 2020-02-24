@@ -2,7 +2,5 @@
 # defaults file for ansible-mssql
 mssql_pid: Developer
 mssql_sa_password: Password123
-mssql_deb_tools_repo: "{{ mssql_repo_url+'/'+ansible_distribution|lower+'/'+ansible_distribution_version+'/prod'+' '+ansible_distribution_release+' main' }}"
-mssql_deb_repo: "{{ mssql_repo_url+'/'+ansible_distribution|lower+'/'+ansible_distribution_version+'/mssql-server-2017'+' '+ansible_distribution_release+' main' }}"
 
-mssql_repo_url: https://packages.microsoft.com
+mssql_version: 2019

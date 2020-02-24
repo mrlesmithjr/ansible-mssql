@@ -1,0 +1,7 @@
+---
+- name: set_facts | Setting Ubuntu Facts
+  set_fact:
+    mssql_deb_repo: deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/ubuntu/16.04/mssql-server-{{ mssql_version }} xenial main
+    mssql_deb_tools_repo: deb [arch=amd64] https://packages.microsoft.com/ubuntu/16.04/prod xenial main
+  when:
+    - ansible_distribution == "Ubuntu"
