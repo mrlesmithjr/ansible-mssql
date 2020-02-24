@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Larry Smith jr.
+  description: Ansible role to install MS SQL
 
   license: MIT
   min_ansible_version: 2.8

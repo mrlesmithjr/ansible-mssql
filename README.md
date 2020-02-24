@@ -1,6 +1,6 @@
 # ansible-mssql
 
-Enter description of Ansible role
+Ansible role to install MS SQL
 
 ## Build Status
 
@@ -11,8 +11,6 @@ Enter description of Ansible role
 ### Travis CI
 
 [![Build Status](https://travis-ci.org/mrlesmithjr/ansible-mssql.svg?branch=master)](https://travis-ci.org/mrlesmithjr/ansible-mssql)
-
-
 
 ## Requirements
 

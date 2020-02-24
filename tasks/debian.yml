@@ -9,7 +9,7 @@
 
 - name: debian | Adding MSSQL tools repo
   apt_repository:
-    repo: deb [arch=amd64] https://packages.microsoft.com/{{ ansible_distribution|lower }}/{{ ansible_distribution_version }}/prod {{ ansible_distribution_release }} main
+    repo: "{{ 'deb [arch=amd64] '+mssql_deb_tools_repo }}"
     state: present
   become: true
   register: result
@@ -17,7 +17,7 @@
 
 - name: debian | Adding MSSQL repo
   apt_repository:
-    repo: deb [arch=amd64] https://packages.microsoft.com/{{ ansible_distribution|lower }}/{{ ansible_distribution_version }}/mssql-server-2017 {{ ansible_distribution_release }} main
+    repo: "{{ 'deb [arch=amd64] '+mssql_deb_repo }}"
     state: present
   become: true
   register: result
@@ -25,7 +25,8 @@
 
 - name: debian | Installing MSSQL
   apt:
-    name: ["mssql-server"]
+    name:
+      - mssql-server
     state: present
   environment:
     ACCEPT_EULA: "y"
@@ -35,7 +36,8 @@
 
 - name: debian | Installing MSSQL Tools
   apt:
-    name: ["mssql-tools"]
+    name:
+      - mssql-tools
     state: present
   environment:
     ACCEPT_EULA: "y"

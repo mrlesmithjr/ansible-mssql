@@ -15,7 +15,7 @@
   register: mssql_configured
   when: not mssql_configured_check['stat']['exists']
 
-- name: config | Marking MSSQL as configured
+- name: config | Marking MSSQL as configured # noqa 503
   file:
     path: /opt/mssql/.configured
     state: touch
