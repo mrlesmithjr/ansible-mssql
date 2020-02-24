@@ -18,7 +18,7 @@
 
 - name: debian | Adding MSSQL repo
   apt_repository:
-    repo: "{{ mssql_deb_repo }}"
+    repo: "{{ mssql_repo }}"
     state: present
   become: true
   register: result
@@ -27,7 +27,7 @@
 
 - name: debian | Adding MSSQL tools repo
   apt_repository:
-    repo: " {{ mssql_deb_tools_repo }}"
+    repo: " {{ mssql_tools_repo }}"
     state: present
   become: true
   register: result
@@ -49,6 +49,7 @@
   apt:
     name:
       - mssql-tools
+      - unixodbc-dev
     state: present
   environment:
     ACCEPT_EULA: "y"
