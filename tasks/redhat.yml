@@ -1,0 +1,45 @@
+---
+- name: redhat | Adding MSSQL Repo
+  yum_repository:
+    name: packages-microsoft-com-mssql-server-{{ mssql_version }}
+    description: MSSQL {{ mssql_version }}
+    baseurl: "{{ mssql_repo }}"
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: redhat | Adding MSSQL Tools Repo
+  yum_repository:
+    name: packages-microsoft-com-prod
+    description: MSSQL Tools
+    baseurl: "{{ mssql_tools_repo }}"
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: redhat | Installing MSSQL
+  yum:
+    name:
+      - mssql-server
+    state: present
+  environment:
+    ACCEPT_EULA: "y"
+  become: true
+  register: result
+  until: result is successful
+  when:
+    - ansible_distribution != "Fedora"
+
+- name: redhat | Installing MSSQL Tools
+  yum:
+    name:
+      - mssql-tools
+      - unixODBC-devel
+    state: present
+  environment:
+    ACCEPT_EULA: "y"
+  become: true
+  register: result
+  until: result is successful
+  when:
+    - ansible_distribution != "Fedora"

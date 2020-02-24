@@ -1,0 +1,14 @@
+---
+- name: set_facts | Setting RedHat Facts
+  set_fact:
+    mssql_repo: https://packages.microsoft.com/rhel/{{ ansible_distribution_major_version }}/mssql-server-{{ mssql_version }}/
+    mssql_tools_repo: https://packages.microsoft.com/rhel/{{ ansible_distribution_major_version }}/prod/
+  when:
+    - ansible_os_family == "RedHat"
+
+- name: set_facts | Setting Ubuntu Facts
+  set_fact:
+    mssql_repo: deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/ubuntu/16.04/mssql-server-{{ mssql_version }} xenial main
+    mssql_tools_repo: deb [arch=amd64] https://packages.microsoft.com/ubuntu/16.04/prod xenial main
+  when:
+    - ansible_distribution == "Ubuntu"
