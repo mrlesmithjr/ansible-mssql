@@ -1,7 +1,9 @@
 > [!CAUTION]
 > **This project is archived and no longer maintained.**
 > Archived: 2026-03-26
-> Reason: Low community usage; no longer maintained# ansible-mssql
+> Reason: Low community usage; no longer maintained
+
+# ansible-mssql
 
 Ansible role to install MS SQL
 
